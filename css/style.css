@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); /*Google font link*/
+
+:root { /* variable essentially which can be used anywhere due to root(scope)*/
+    --primary-color: #047aed;  
+    --secondary-color: #1c3fa8;  
+    --dark-color: #001140;  
+    --light-color: #f4f4f4;
+    --success-color: #5cb85c;   
+    --error-color: #d9534f;   
+}
+
+/*Basic Styles---------------------------------------------------------------*/
+* {
+    box-sizing: border-box; /*tells the browser to account for any border and padding in the values you specify for an element's width and height*/ 
+    padding: 0; /*Just zeroing out padding and margin on everything to start*/
+    margin: 0; 
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none; /*removes bullet points from list*/ 
+}
+
+a {
+    text-decoration: none; /*removes underline from links*/
+    color: #333;
+}
+
+h1, h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+p {
+    margin: 10px 0; /*Helps tell paragraphs apart*/ 
+}
+
+img {
+    width: 100%; /*will keep images within their container*/
+}
+
+code, pre {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.hidden { /*for spam honeypot filter making it hidden and taking no space*/
+    visibility: hidden;
+    height: 0;
+}
+
+
+/*Navbar Styling---------------------------------------------------------------*/
+.navbar {
+   background-color: var(--primary-color);
+   color: #fff; 
+   height: 70px;
+}
+
+.navbar ul {
+    display: flex; /*lines flex item in order left->right*/
+}
+
+.navbar a {
+    color: #fff;
+    padding: 10px; /*helps break up nav links*/
+    margin: 0 5px;
+}
+
+.navbar a:hover { /*creates bottom border effect when mouse hovers over*/
+    border-bottom: 2px #fff solid;
+}
+
+.navbar .flex {
+    justify-content: space-between; /*pushes flex items opposite ends by filling white space between items*/
+}
+
+/* Showcase---------------------------------------------------------------*/
+.showcase {
+    height: 400px;
+    background-color: var(--primary-color);
+    color: #fff;
+    position: relative; /*positions element relative to where it would be normally */
+}
+
+.showcase h1 {
+    font-size: 40px;
+}
+
+.showcase p {
+    margin: 20px 0;
+}
+
+.showcase .grid {
+    overflow: visible; /*causes form to go beyond border of showcase*/
+   grid-template-columns: 55% 45%; /* (grid item 1 width) (grid item 2 width) */
+   gap: 30px;
+}
+
+.showcase-text {
+    animation: slideInFromLeft 1s ease-in;
+}
+
+.showcase-form {
+    position: relative;
+    top: 60px;
+    height: 350px;
+    width: 400px;
+    padding: 40px;
+    z-index: 100;
+    animation: slideInFromRight 1s ease-in;
+}
+
+.showcase-form .form-control {
+    margin: 30px 0;
+}
+
+.showcase-form input[type='text'], /*selects <input> element*/
+.showcase-form input[type='email'] {
+    border: 0;
+    border-bottom: 1px solid #b4becb;
+    width: 100%;
+    padding: 3px;
+    font-size: 16px;
+}
+
+.showcase-form input:focus { /*selects input field when clicked on*/
+    outline: none;
+}
+
+.showcase::before, /*psuedoelements creating slanted line on Home page*/
+.showcase::after { /*::before inserts content as first child of selected element, ::after is similar, not sure you need both here*/
+    content: ''; /*empty content, we want to style*/
+    position: absolute;
+    height: 100px;
+    bottom: -70px; /*moves down 70px from normal position*/
+    right: 0;
+    left: 0;
+    background: #fff;
+    transform: skewY(-3deg); /*creates slant*/
+    -webkit-transform: skewY(-3deg);
+    -moz-transform: skewY(-3deg); /*for other browsers*/
+    -ms-transform: skewY(-3deg);
+}
+
+/*Stats Section----------------------------------------------------------------------------*/
+.stats {
+    padding-top: 100px; /*pushes stats section below slanted line element*/
+    animation: slideInFromBottom 1s ease-in;
+}
+
+.stats-heading {
+    max-width: 500px;
+    margin: auto; /*centers text*/
+}
+
+.stats .grid h3 { /*for numbers under icons on Home page*/
+    font-size: 35px;
+}
+
+.stats .grid p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* CLI - grid layout--------------------------------------------------------------------------- */
+.cli .grid { /*3 col x 2 row grid */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.cli .grid > *:first-child { /*selects everything that is a first child of parent class(grid)*/
+    grid-column: 1 / span 2; /*img spans from column 1 to 2*/
+    grid-row: 1 / span 2; /*img spans from row 1 to 2*/
+}
+
+/* Cloud - grid ---------------------------------------------------------------------------*/
+.cloud .grid {
+    grid-template-columns: 4fr 3fr; /*2 cols*/
+}
+
+/*Programming Languages - flexbox ----------------------------------------------------------------*/
+.languages .flex {
+    flex-wrap: wrap;
+}
+
+.languages .card {
+    text-align: center;
+    margin: 18px 10px 40px;
+    transition: transform 0.2s ease-in; /*makes flickering effect on card slower*/
+}
+
+.languages .card h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.languages .card:hover { /*flickering effect when hovering over card*/
+   transform: translateY(-15px); 
+}
+
+/*Features Page ----------------------------------------------------------------------------------------------------------------*/
+.features-head img,
+.docs-head img {
+    width: 200px;
+    justify-self: flex-end; /*moves img to the end(right) of the column*/
+}
+
+.features-sub-head img {
+    width: 300px;
+    justify-self: flex-end;
+}
+
+.features-main .card > i { /*selects icon image in main grid section */
+    margin-right: 20px;
+}
+
+.features-main .grid {
+    padding: 30px;
+}
+
+.features-main .grid > *:first-child {
+    grid-column: 1 / span 3; /*starts at line 1 and spans 3 columns*/
+}
+
+.features-main .grid > *:nth-child(2) {
+    grid-column: 1 / span 2; /*selects everything that is the 2nd child of parent*/
+}
+
+/*Docs --------------------------------------------------------------------------------------------------------*/
+.docs-main h3 {
+    margin: 20px 0;
+}
+
+.docs-main .grid {
+    grid-template-columns: 1fr 2fr; 
+    align-items: flex-start; /*aligns grid items along the block-axis(y-axis)(vertically)*/
+}
+
+.docs-main nav li {
+    font-size: 17px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px #ccc solid;
+}
+
+.docs-main a:hover {
+    font-weight: bold;
+}
+
+/*Footer --------------------------------------------------------------------------------------------------------*/
+.footer .social a { /*spaces out social icons*/
+    margin: 0% 10px;
+}
+
+/* Animations -----------------------------------------------------------------------------------------------*/
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%); /*starts out of view to the left*/
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%); /*starts out of view to the left*/
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%); /*starts out of view to the left*/
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%); /*starts out of view to the left*/
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Media Queries -----------------------------------------------------------------------------------------------*/
+
+/* Tablets and under */
+@media(max-width: 768px) {
+    .grid,
+    .showcase .grid,
+    .stats .grid,
+    .cli .grid,
+    .cloud .grid,
+    .feautres-main .grid,
+    .docs-main .grid {
+        grid-template-columns: 1fr; /*stacks all grid items in 1 column for small screens*/
+        grid-template-rows: 1fr;
+    }
+
+    .showcase {
+        height: auto;
+    }
+
+    .showcase-text {
+       text-align: center;
+       margin-top: 40px;
+       animation: slideInFromTop 1s ease-in; 
+    }
+
+    .showcase-form {
+        justify-self: center; /*can select just one flex/grid item*/
+        margin: auto;
+        animation: slideInFromBottom 1s ease-in;
+    }
+
+    .cli .grid > *:first-child { /*selects cli img*/
+        grid-column: 1; /*makes imaged naturally take up 1 col and 1 row on small screens*/
+        grid-row: 1; 
+    }
+
+    .features-head,
+    .features-sub-head,
+    .docs-main {
+        text-align: center;
+    }
+
+    .features-head img,
+    .features-sub-head img,
+    .docs-main img{
+        justify-self: center;
+    }
+
+    .features-main .grid > *:first-child,
+    .features-main .grid > *:nth-child(2) {
+        grid-column: 1;
+    }
+}
+
+/* Mobile */
+@media(max-width: 500px) {
+    .navbar {
+        height: 110px; /*thicker nab bar since flex items now in a column */
+    }
+
+    .navbar .flex {
+        flex-direction: column; /*stacks flex items (hi and nav ul) in a column*/
+    }
+
+    .navbar ul {
+        padding: 10px;
+        background-color: rgba(0,0,0,0.1); /*creates contrast around nav menu*/
+    }
+}
